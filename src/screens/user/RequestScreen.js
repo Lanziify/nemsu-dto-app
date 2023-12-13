@@ -17,72 +17,69 @@ const RequestScreen = props => {
   const navigation = useNavigation();
 
   return (
-    <>
-      <Greetings user={user} />
-      <Tab.Navigator
-        screenOptions={{
-          tabBarAndroidRipple: true,
-          tabBarActiveTintColor: colors.black,
-          tabBarInactiveTintColor: colors.inactiveIcon,
-          tabBarIndicatorContainerStyle: {
-            backgroundColor: colors.primary,
-          },
-          tabBarIndicatorStyle: {
-            backgroundColor: colors.accent,
-          },
-          tabBarLabelStyle: {
-            fontSize: textSize.SM,
-          },
-          tabBarStyle: {
-            borderTopWidth: 0,
-            elevation: 0,
-          },
-          tabBarPressOpacity: 1,
-          tabBarPressColor: null,
-        }}>
-        <Tab.Screen
-          name="All"
-          children={() => (
-            <All
-              requests={props.requests}
-              loading={props.loading}
-              navigation={navigation}
-              user={user}
-            />
-          )}
-        />
-        <Tab.Screen
-          name="Pending"
-          children={() => (
-            <Pending
-              requests={props.requests}
-              loading={props.loading}
-              navigation={navigation}
-            />
-          )}
-        />
-        <Tab.Screen
-          name="Accepted"
-          children={() => (
-            <Accepted
-              requests={props.requests}
-              loading={props.loading}
-              navigation={navigation}
-            />
-          )}
-        />
-        <Tab.Screen
-          name="Completed"
-          children={() => (
-            <Completed
-              requests={props.requests}
-              loading={props.loading}
-              navigation={navigation}
-            />
-          )}
-        />
-      </Tab.Navigator>
-    </>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarAndroidRipple: true,
+        tabBarActiveTintColor: colors.black,
+        tabBarInactiveTintColor: colors.inactiveIcon,
+        tabBarIndicatorContainerStyle: {
+          backgroundColor: colors.primary,
+        },
+        tabBarIndicatorStyle: {
+          backgroundColor: colors.accent,
+        },
+        tabBarLabelStyle: {
+          fontSize: textSize.SM,
+        },
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        tabBarPressOpacity: 1,
+        tabBarPressColor: null,
+      }}>
+      <Tab.Screen
+        name="All"
+        children={() => (
+          <All
+            requests={props.requests}
+            loading={props.loading}
+            navigation={navigation}
+            user={user}
+          />
+        )}
+      />
+      <Tab.Screen
+        name="Pending"
+        children={() => (
+          <Pending
+            requests={props.requests}
+            loading={props.loading}
+            navigation={navigation}
+          />
+        )}
+      />
+      <Tab.Screen
+        name="Accepted"
+        children={() => (
+          <Accepted
+            requests={props.requests}
+            loading={props.loading}
+            navigation={navigation}
+          />
+        )}
+      />
+      <Tab.Screen
+        name="Completed"
+        children={() => (
+          <Completed
+            requests={props.requests}
+            loading={props.loading}
+            navigation={navigation}
+          />
+        )}
+      />
+    </Tab.Navigator>
   );
 };
 

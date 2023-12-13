@@ -1,5 +1,6 @@
 package com.nemsudto
-
+import android.os.Bundle;
+import org.devio.rn.splashscreen.SplashScreen;
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -12,6 +13,11 @@ class MainActivity : ReactActivity() {
    * rendering of the component.
    */
   override fun getMainComponentName(): String = "NemsuDTO"
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    SplashScreen.show(this)
+    super.onCreate(savedInstanceState)
+  }
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]

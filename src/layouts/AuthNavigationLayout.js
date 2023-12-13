@@ -16,6 +16,8 @@ const Stack = createStackNavigator();
 const AuthNavigationLayout = () => {
   const [loading, setLoading] = React.useState(false);
 
+
+
   if (loading) return <Preloader />;
 
   return (

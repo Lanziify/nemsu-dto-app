@@ -26,13 +26,13 @@ const Greetings = props => {
       fontSize: textSize.MSV,
       lineHeight: textSize.MSV * 1.6,
       fontWeight: '900',
-      color: colors.secondary,
+      color: colors.black,
     },
     text: {
       fontSize: textSize.XL,
       fontWeight: 'bold',
       lineHeight: textSize.XL * 1.6,
-      color: colors.black,
+      color: colors.gray,
     },
     logoContainer: {
       position: 'absolute',

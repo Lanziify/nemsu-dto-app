@@ -34,11 +34,14 @@ const Accepted = ({requests, loading, navigation}) => {
       )}
       ListEmptyComponent={RenderEmptyList}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        gap: layoutSize.MD,
-        paddingVertical: layoutSize.MD,
-        paddingHorizontal: layoutSize.MD,
-      }}
+      ItemSeparatorComponent={() => (
+        <View
+          style={{
+            backgroundColor: colors.lightGrayUnderlay,
+            height: 1,
+          }}
+        />
+      )}
       style={{
         backgroundColor: colors.primary,
       }}

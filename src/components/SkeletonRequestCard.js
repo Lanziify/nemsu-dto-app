@@ -27,10 +27,9 @@ const SkeletonRequestCard = () => {
   const styles = StyleSheet.create({
     container: {
       height: HEIGHT,
-      borderRadius: layoutSize.MD,
       justifyContent: 'space-between',
       padding: layoutSize.MD,
-      backgroundColor: colors.skeltonBackground,
+      backgroundColor: colors.primary,
     },
     content: {
       height: 20,

@@ -42,8 +42,8 @@ const HomeLayout = () => {
   const [requests, isFetchinRequests, fetchingReqError] =
     useCollectionData(userRequestQuery);
 
-  const [notifications, isFetchingNotifications, fetchingNotifError] =
-    useCollectionData(notificationsQuery);
+  // const [notifications, isFetchingNotifications, fetchingNotifError] =
+  //   useCollectionData(notificationsQuery);
 
   if (userLoading) {
     return <Preloader />;
@@ -66,16 +66,14 @@ const HomeLayout = () => {
             },
             headerShadowVisible: false,
             tabBarStyle: {
-              // position: 'absolute',
-              // borderTopStartRadius: layoutSize.MD,
-              // borderTopEndRadius: layoutSize.MD,
-              backgroundColor: colors.secondary,
+              height: 50,
+              backgroundColor: colors.accent,
               borderTopWidth: 0,
               elevation: 0,
             },
             tabBarIcon: ({focused}) => {
               let iconName;
-              let color = focused ? colors.accent : colors.lightGray;
+              let color = focused ? colors.white : colors.lightGray;
               if (route.name === 'Request') {
                 iconName = focused ? 'documents' : 'documents-outline';
               }
@@ -107,7 +105,7 @@ const HomeLayout = () => {
           borderRadius: layoutSize.FULL,
           padding: layoutSize.XXS,
           borderWidth: 8,
-          borderColor: colors.secondary,
+          borderColor: colors.accent,
           // elevation: 4,
         }}
         activeOpacity={0.6}

@@ -25,10 +25,10 @@ const RequestCard = props => {
       display: 'flex',
       // gap: layoutSize.MD,
       backgroundColor: colors.primary,
-      borderWidth: 1,
-      borderColor: colors.lightGray,
+      // borderWidth: 1,
+      // borderColor: colors.lightGray,
       padding: layoutSize.MD,
-      borderRadius: layoutSize.MD,
+      // borderRadius: layoutSize.MD,
       // elevation: 4,
     },
     cardContentContainer: {
