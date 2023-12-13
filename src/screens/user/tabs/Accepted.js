@@ -6,24 +6,9 @@ import {layoutSize} from '../../../constant/size';
 import SkeletonRequestCard from '../../../components/SkeletonRequestCard';
 import RequestCard from '../../../components/RequestCard';
 
-const HEIGHT = 172.57142639160156;
-
 const Accepted = ({requests, loading, navigation}) => {
-  const [flatListHeight, setFlatListHeight] = React.useState(0);
-
   const renderSkeletonLoader = () => {
-    const numSkeletons = Math.floor(
-      (flatListHeight - layoutSize.MD * Math.ceil(flatListHeight / HEIGHT)) /
-        HEIGHT,
-    );
-    return new Array(numSkeletons)
-      .fill(null)
-      .map((_, index) => <SkeletonRequestCard key={index} />);
-  };
-
-  const onFlatListLayout = event => {
-    const {height} = event.nativeEvent.layout;
-    setFlatListHeight(height);
+    return [1, 2, 3].map((_, index) => <SkeletonRequestCard key={index} />);
   };
 
   const handleCardClick = request => {
@@ -43,7 +28,6 @@ const Accepted = ({requests, loading, navigation}) => {
   return (
     <FlatList
       data={requestUtil.filteredList(null, requests, 'Accepted')}
-      onLayout={onFlatListLayout}
       keyExtractor={item => item.requestId}
       renderItem={item => (
         <RequestCard request={item} onPress={() => handleCardClick(item)} />

@@ -7,6 +7,7 @@ export const colors = {
   // primary: '#FFFAFF',
   primary: '#FFFFFF',
   secondary: '#005B91',
+  secondaryUnderlay: '#005283',
   accent: '#06b6d4',
   accentUnderlay: '#0891b2',
   text: '#34495e',

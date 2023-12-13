@@ -1,4 +1,5 @@
 import {
+  BackHandler,
   ScrollView,
   StyleSheet,
   Text,
@@ -16,13 +17,17 @@ import DtoButton from '../../../components/DtoButton';
 import validation from '../../../utils/validation';
 import Toast from 'react-native-toast-message';
 import ApiService from '../../../api/ApiService';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import Preloader from '../../../components/Preloader';
 
-const Create = () => {
+const Create = props => {
   const {user, userToken} = useAuth();
   const {width} = useWindowDimensions();
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
+
+  const [loading, setLoading] = React.useState(false);
+
   const [values, setValues] = React.useState({
     uid: user.uid,
     device: '',
@@ -99,23 +104,34 @@ const Create = () => {
       setError({...error, ...inputError});
     } else {
       try {
+        props.setLoading(true);
         await ApiService.createRequest(values, userToken.token);
-        navigation.navigate(-1)
+        props.setLoading(false);
+        Toast.show({
+          type: 'success',
+          text1: 'Thank you!',
+          text2: 'Your request has been successfully submitted.',
+          position: 'top',
+        });
+        if (navigation.canGoBack()) {
+          navigation.goBack();
+        }
       } catch (error) {
         Toast.show({
           type: 'error',
           text1: 'Something went wrong',
+          text2: error.message,
           position: 'top',
         });
-        // const errorMessage = handleError.login(e);
-        // setError({ ...error, ...errorMessage });
       }
     }
   };
 
+  // if (loading) return <Preloader />;
+
   return (
-    <ClosableKeyboard>
-      <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <ClosableKeyboard>
         <View style={styles.fieldsContainer}>
           <View>
             <DropDownPicker
@@ -165,8 +181,8 @@ const Create = () => {
           })}
           <DtoButton primary text="Submit" onPress={handleSubmit} />
         </View>
-      </ScrollView>
-    </ClosableKeyboard>
+      </ClosableKeyboard>
+    </View>
   );
 };
 

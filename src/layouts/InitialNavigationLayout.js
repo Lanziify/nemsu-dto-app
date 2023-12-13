@@ -4,6 +4,7 @@ import OnboardScreen from '../screens/onboard/OnboardScreen';
 import LoginScreen from '../screens/public/LoginScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Preloader from '../components/Preloader';
+import {StatusBar} from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -32,15 +33,21 @@ const InitialNavigationLayout = () => {
   if (loading) return <Preloader />;
 
   return hasCompletedOnboarding ? (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-    </Stack.Navigator>
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+      </Stack.Navigator>
+    </>
   ) : (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Boarding" component={OnboardScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-    </Stack.Navigator>
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Boarding" component={OnboardScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+      </Stack.Navigator>
+    </>
   );
 };
 
-export default InitialNavigationLayout;
+export default React.memo(InitialNavigationLayout);

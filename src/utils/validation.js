@@ -81,18 +81,18 @@ export const validation = {
     const errorMessage = {};
 
     if (!values.current) {
-      errorMessage.currentPassword = 'Please enter your current password';
+      errorMessage.current = 'Please enter your current password';
     }
 
     if (!values.new) {
-      errorMessage.newPassword = 'Please enter your new password';
+      errorMessage.new = 'Please enter your new password';
     } else if (!strings.passwordRegex.test(values.new)) {
-      errorMessage.newPassword =
+      errorMessage.new =
         'Password must be eight characters long, at least one letter and one number';
     }
 
     if (!values.confirm || values.new != values.confirm) {
-      errorMessage.confirmPassword = 'Password does not match';
+      errorMessage.confirm = 'Password does not match';
     }
 
     return errorMessage;

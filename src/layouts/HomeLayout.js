@@ -1,3 +1,4 @@
+import {TouchableHighlight} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useAuth} from '../context/AuthContext';
@@ -11,20 +12,17 @@ import DtoHeader from '../components/DtoHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import RequestScreen from '../screens/user/RequestScreen';
-import NotificationScreen from '../screens/user/NotificationScreen';
 import ProfileScreen from '../screens/user/ProfileScreen';
 
 import {colors} from '../constant/colors';
-import {TouchableHighlight, useWindowDimensions} from 'react-native';
 import {layoutSize} from '../constant/size';
 import {useNavigation} from '@react-navigation/native';
-import { appName } from '../constant/strings';
+import {appName} from '../constant/strings';
 
 const Tab = createBottomTabNavigator();
 
 const HomeLayout = () => {
   const {user, userLoading} = useAuth();
-  const {width} = useWindowDimensions();
   const navigation = useNavigation();
 
   const dtoRequestsRef = collection(firestore, 'requests');
@@ -60,8 +58,9 @@ const HomeLayout = () => {
               let title = '';
               if (route.name === 'Request') {
                 title = appName;
-              } if (route.name === 'Profile') {
-                title = "Account Settings"
+              }
+              if (route.name === 'Profile') {
+                title = 'Account Settings';
               }
               return <DtoHeader headerTitle={title} />;
             },
@@ -97,10 +96,6 @@ const HomeLayout = () => {
             <RequestScreen requests={requests} loading={isFetchinRequests} />
           )}
         />
-        {/* <Tab.Screen
-          name="Notifications"
-          children={() => <NotificationScreen notifications={notifications} />}
-        /> */}
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
       <TouchableHighlight
@@ -124,4 +119,4 @@ const HomeLayout = () => {
   );
 };
 
-export default HomeLayout;
+export default React.memo(HomeLayout);

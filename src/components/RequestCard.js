@@ -1,4 +1,5 @@
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import React from 'react';
 import {colors} from '../constant/colors';
 import {requestUtil} from '../utils/request';
 import {layoutSize, textSize} from '../constant/size';
@@ -94,4 +95,4 @@ const RequestCard = props => {
   );
 };
 
-export default RequestCard;
+export default React.memo(RequestCard);

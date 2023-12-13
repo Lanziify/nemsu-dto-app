@@ -1,17 +1,19 @@
-import {Linking, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import React from 'react';
-import DtoButton from '../../components/DtoButton';
 import {useAuth} from '../../context/AuthContext';
 import {colors} from '../../constant/colors';
 import {layoutSize, textSize} from '../../constant/size';
+import DtoLogo from '../../components/DtoLogo';
+import {useNavigation} from '@react-navigation/native';
 
 const ProfileScreen = () => {
-  const {logoutUser} = useAuth();
+  const {user, logoutUser} = useAuth();
+  const navigation = useNavigation();
 
   const settingsItems = [
     {
       buttonText: 'Change Password',
-      onPress: () => Linking.openURL('https://digital-transformation-office.web.app'),
+      onPress: () => navigation.navigate('PasswordChange'),
     },
     {
       buttonText: 'Logout',
@@ -23,6 +25,28 @@ const ProfileScreen = () => {
     container: {
       flex: 1,
       backgroundColor: colors.primary,
+    },
+    profileContainer: {
+      padding: layoutSize.MD,
+      alignItems: 'center',
+      gap: layoutSize.MD,
+      marginBottom: layoutSize.MD,
+    },
+    profileLogoContainer: {
+      gap: layoutSize.XS,
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      padding: layoutSize.XL,
+      backgroundColor: colors.white,
+      borderRadius: layoutSize.FULL,
+      borderWidth: 4,
+      borderColor: colors.accent,
+      elevation: 4,
+    },
+    heading: {
+      fontWeight: '900',
+      fontSize: textSize.LG,
+      color: colors.black,
     },
     button: {
       paddingHorizontal: layoutSize.MD,
@@ -36,6 +60,12 @@ const ProfileScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.profileContainer}>
+        <View style={styles.profileLogoContainer}>
+          <DtoLogo width={32} height={32} fill={colors.accent} />
+        </View>
+        <Text style={styles.heading}>{user.displayName}</Text>
+      </View>
       <View>
         {settingsItems.map((item, index) => (
           <TouchableHighlight

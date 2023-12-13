@@ -67,11 +67,6 @@ const LoginScreen = () => {
     } else {
       try {
         await loginUser(values.email, values.password);
-        Toast.show({
-          type: 'success',
-          text1: 'login success',
-          position: 'bottom',
-        });
       } catch (error) {
         const errorMessage = ERROR.authError(error, AuthErrorCodes);
         Toast.show({
@@ -120,44 +115,42 @@ const LoginScreen = () => {
   });
 
   return (
-    <ClosableKeyboard>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Toast autoHide />
-          <LottieView
-            source={require('../../assets/lottie/lottiewelcome.json')}
-            autoPlay
-            loop
-            style={styles.lottieView}
-          />
-          <View
-            style={{
-              width: '100%',
-              padding: layoutSize.MD,
-            }}>
-            <Text style={styles.title}>Welcome Back!</Text>
-            <Text style={styles.text}>
-              We streamline and enhance the process of handling repair
-              requisitions for ICT-related issues across various school offices.
-            </Text>
-          </View>
-          <View style={styles.inputContainer}>
-            {inputs.map((input, index) => {
-              return (
-                <DtoInput
-                  key={index}
-                  {...input}
-                  onChangeText={value => {
-                    handleOnChange(input.name, value);
-                  }}
-                />
-              );
-            })}
-            <DtoButton primary text="Login" onPress={handleLoginUser} />
-          </View>
+    <View style={styles.container}>
+      <ClosableKeyboard>
+        <LottieView
+          source={require('../../assets/lottie/lottiewelcome.json')}
+          autoPlay
+          loop
+          style={styles.lottieView}
+        />
+        <View
+          style={{
+            width: '100%',
+            padding: layoutSize.MD,
+          }}>
+          <Text style={styles.title}>Welcome Back!</Text>
+          <Text style={styles.text}>
+            We streamline and enhance the process of handling repair
+            requisitions for ICT-related issues across various school offices.
+          </Text>
         </View>
-      </ScrollView>
-    </ClosableKeyboard>
+        <View style={styles.inputContainer}>
+          {inputs.map((input, index) => {
+            return (
+              <DtoInput
+                key={index}
+                {...input}
+                onChangeText={value => {
+                  handleOnChange(input.name, value);
+                }}
+              />
+            );
+          })}
+          <DtoButton primary text="Login" onPress={handleLoginUser} />
+        </View>
+        <Toast autoHide />
+      </ClosableKeyboard>
+    </View>
   );
 };
 

@@ -17,6 +17,7 @@ import LottieView from 'lottie-react-native';
 import {textSize} from '../../constant/size';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DtoButton from '../../components/DtoButton';
 
 const OnboardScreen = () => {
   const {width} = useWindowDimensions();
@@ -98,9 +99,10 @@ const OnboardScreen = () => {
           left: 16,
           right: 16,
           borderRadius: 12,
-          backgroundColor: '#f3f4f6',
         }}>
-        <TouchableWithoutFeedback
+        <DtoButton
+          secondary
+          text="Continue"
           onPress={() => {
             if (flatListIndex.value < onboardingData.length - 1) {
               flatListRef.current?.scrollToIndex({
@@ -109,25 +111,8 @@ const OnboardScreen = () => {
             } else {
               markOnboardingAsCompleted();
             }
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 12,
-            }}>
-            <Text
-              style={{
-                fontSize: textSize.SM,
-                color: '#374151',
-                fontWeight: '500',
-              }}>
-              Continue
-            </Text>
-            <Icon name="chevron-forward" size={18} color="#374151" />
-          </View>
-        </TouchableWithoutFeedback>
+          }}
+        />
       </View>
     </View>
   );
