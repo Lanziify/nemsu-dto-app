@@ -19,7 +19,7 @@ const Accepted = ({requests, loading, navigation}) => {
     return loading ? (
       renderSkeletonLoader()
     ) : (
-      <View>
+      <View style={{ alignItems: 'center'}}>
         <Text>You havent made any request yet</Text>
       </View>
     );

@@ -51,7 +51,7 @@ const DtoInput = props => {
   });
 
   return (
-    <View>
+    <View style={props.inputContainerStyle}>
       {props.label && (
         <Text
           style={{
@@ -69,6 +69,7 @@ const DtoInput = props => {
           keyboardType={props.keyboardType}
           onChangeText={props.onChangeText}
           placeholderTextColor={colors.text}
+          autoFocus={props.autoFocus}
           secureTextEntry={props.secureTextEntry && hidePassword}
           multiline={props.multiline}
           numberOfLines={props.numberOfLines}

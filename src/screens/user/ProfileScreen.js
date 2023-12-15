@@ -5,6 +5,7 @@ import {colors} from '../../constant/colors';
 import {layoutSize, textSize} from '../../constant/size';
 import DtoLogo from '../../components/DtoLogo';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const ProfileScreen = () => {
   const {user, logoutUser} = useAuth();
@@ -43,9 +44,17 @@ const ProfileScreen = () => {
       borderColor: colors.accent,
       elevation: 4,
     },
+    nameContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: layoutSize.XS,
+      padding: layoutSize.XS,
+      borderRadius: layoutSize.SM,
+      backgroundColor: colors.lightGray
+    },
     heading: {
-      fontWeight: '900',
-      fontSize: textSize.LG,
+      fontWeight: '700',
+      fontSize: textSize.MD,
       color: colors.black,
     },
     button: {
@@ -64,7 +73,12 @@ const ProfileScreen = () => {
         <View style={styles.profileLogoContainer}>
           <DtoLogo width={32} height={32} fill={colors.accent} />
         </View>
-        <Text style={styles.heading}>{user.displayName}</Text>
+        <View style={styles.nameContainer}>
+          <View style={{padding: layoutSize.XS, backgroundColor: colors.accent, borderRadius: layoutSize.XS}}>
+            <Icon name="person" size={layoutSize.SM} color={colors.white}/>
+          </View>
+          <Text style={styles.heading}>{user.displayName}</Text>
+        </View>
       </View>
       <View>
         {settingsItems.map((item, index) => (

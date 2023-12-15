@@ -43,6 +43,7 @@ export function AuthContextProvider({children}) {
       }
 
       // setUser(credentials.user);
+      setUserLoading(false);
     } catch (error) {
       setUserLoading(false);
       throw error;

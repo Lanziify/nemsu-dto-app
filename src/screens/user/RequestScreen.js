@@ -7,7 +7,6 @@ import Accepted from './tabs/Accepted';
 import Completed from './tabs/Completed';
 import {colors} from '../../constant/colors';
 import {textSize} from '../../constant/size';
-import Greetings from '../../components/Greetings';
 import {useNavigation} from '@react-navigation/native';
 
 const Tab = createMaterialTopTabNavigator();

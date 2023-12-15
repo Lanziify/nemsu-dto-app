@@ -7,13 +7,13 @@ const DtoButton = props => {
   const styles = StyleSheet.create({
     dtoButton: {
       borderRadius: layoutSize.MD,
-      backgroundColor: props.primary ? colors.accent : colors.secondary,
+      backgroundColor: props.primary ? colors.accent : colors.white,
       paddingHorizontal: layoutSize.MD,
       paddingVertical: layoutSize.MD,
     },
     text: {
       textAlign: 'center',
-      color: colors.white,
+      color: props.white ? colors.black : colors.white,
       fontSize: textSize.MD,
       fontWeight: '500',
     },
@@ -25,8 +25,9 @@ const DtoButton = props => {
         style={[styles.dtoButton, props.styles]}
         onPress={props.onPress}
         activeOpacity={0.6}
-        underlayColor={props.primary ? colors.accentUnderlay : colors.secondaryUnderlay}
-        >
+        underlayColor={
+          props.primary ? colors.accentUnderlay : colors.lightGrayUnderlay
+        }>
         <Text style={styles.text}>{props.text}</Text>
       </TouchableHighlight>
     </View>

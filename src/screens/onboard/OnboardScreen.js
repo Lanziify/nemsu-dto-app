@@ -2,7 +2,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableWithoutFeedback,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -11,7 +10,6 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/Ionicons';
 import onboardingData from '../../data/onboarding';
 import LottieView from 'lottie-react-native';
 import {textSize} from '../../constant/size';
@@ -25,7 +23,6 @@ const OnboardScreen = () => {
   const flatListIndex = useSharedValue(0);
   const flatListRef = React.useRef();
   const navigation = useNavigation();
-  const [loading, setLoading] = React.useState(true);
 
   const RenderItem = props => {
     return (
@@ -43,9 +40,9 @@ const OnboardScreen = () => {
         <Text style={[styles.title, {color: props.item.textColor}]}>
           {props.item.title}
         </Text>
-        <Text style={[styles.text, {color: props.item.textColor}]}>
+        {/* <Text style={[styles.text, {color: props.item.textColor}]}>
           {props.item.text}
-        </Text>
+        </Text> */}
       </View>
     );
   };
@@ -101,7 +98,7 @@ const OnboardScreen = () => {
           borderRadius: 12,
         }}>
         <DtoButton
-          secondary
+          white
           text="Continue"
           onPress={() => {
             if (flatListIndex.value < onboardingData.length - 1) {

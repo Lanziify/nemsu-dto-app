@@ -1,11 +1,4 @@
-import {
-  BackHandler,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import {StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import React from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DtoInput from '../../../components/DtoInput';
@@ -18,15 +11,12 @@ import validation from '../../../utils/validation';
 import Toast from 'react-native-toast-message';
 import ApiService from '../../../api/ApiService';
 import {useNavigation} from '@react-navigation/native';
-import Preloader from '../../../components/Preloader';
 
 const Create = props => {
   const {user, userToken} = useAuth();
   const {width} = useWindowDimensions();
   const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
-
-  const [loading, setLoading] = React.useState(false);
 
   const [values, setValues] = React.useState({
     uid: user.uid,
@@ -126,8 +116,6 @@ const Create = props => {
       }
     }
   };
-
-  // if (loading) return <Preloader />;
 
   return (
     <View style={styles.container}>

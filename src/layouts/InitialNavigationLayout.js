@@ -14,7 +14,6 @@ const InitialNavigationLayout = () => {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // Check if the user has completed onboarding in AsyncStorage or any other storage mechanism
     const checkOnboardingStatus = async () => {
       try {
         const onboardingStatus = await AsyncStorage.getItem('onboardingStatus');
@@ -41,7 +40,7 @@ const InitialNavigationLayout = () => {
     </>
   ) : (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar translucent  backgroundColor="transparent" />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Boarding" component={OnboardScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />

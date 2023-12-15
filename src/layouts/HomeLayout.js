@@ -25,6 +25,8 @@ const HomeLayout = () => {
   const {user, userLoading} = useAuth();
   const navigation = useNavigation();
 
+  const [searchedItems, setSearchedItems] = React.useState([]);
+
   const dtoRequestsRef = collection(firestore, 'requests');
   const dtoNotificatonsRef = collection(firestore, 'notifications');
 
@@ -45,6 +47,19 @@ const HomeLayout = () => {
   // const [notifications, isFetchingNotifications, fetchingNotifError] =
   //   useCollectionData(notificationsQuery);
 
+  const handleSearchInputChange = e => {
+    let query = e.nativeEvent.text;
+    setSearchedItems(
+      requests.filter(
+        request =>
+          request.requestId.toLowerCase().includes(query) ||
+          request.name.toLowerCase().includes(query) ||
+          request.device.toLowerCase().includes(query) ||
+          request.brand.toLowerCase().includes(query),
+      ),
+    );
+  };
+
   if (userLoading) {
     return <Preloader />;
   }
@@ -62,7 +77,12 @@ const HomeLayout = () => {
               if (route.name === 'Profile') {
                 title = 'Account Settings';
               }
-              return <DtoHeader headerTitle={title} />;
+              return (
+                <DtoHeader
+                  headerTitle={title}
+                  handleSearchInputChange={handleSearchInputChange}
+                />
+              );
             },
             headerShadowVisible: false,
             tabBarStyle: {
@@ -91,7 +111,7 @@ const HomeLayout = () => {
         <Tab.Screen
           name="Request"
           children={() => (
-            <RequestScreen requests={requests} loading={isFetchinRequests} />
+            <RequestScreen requests={searchedItems.length > 0 ? searchedItems : requests} loading={isFetchinRequests} />
           )}
         />
         <Tab.Screen name="Profile" component={ProfileScreen} />

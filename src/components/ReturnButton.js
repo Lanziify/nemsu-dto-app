@@ -21,8 +21,12 @@ const ReturnButton = props => {
     },
   });
   return (
-    <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-      <Icon name="chevron-back" size={24} color={colors.black} />
+    <TouchableOpacity
+      style={styles.returnButton}
+      onPress={() => navigation.goBack()}>
+      {props.showIcon ? (
+        <Icon name="chevron-back" size={24} color={colors.black} />
+      ) : null}
       <Text style={styles.text}>{props.returnText || 'Return'}</Text>
     </TouchableOpacity>
   );

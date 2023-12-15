@@ -10,18 +10,19 @@ import PasswordChange from '../screens/user/settings/PasswordChange';
 import Toast from 'react-native-toast-message';
 import React from 'react';
 import Preloader from '../components/Preloader';
+import {StatusBar} from 'react-native';
+import { colors } from '../constant/colors';
 
 const Stack = createStackNavigator();
 
 const AuthNavigationLayout = () => {
   const [loading, setLoading] = React.useState(false);
 
-
-
   if (loading) return <Preloader />;
 
   return (
     <>
+      <StatusBar backgroundColor={colors.primary} barStyle="dark-content" />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomeLayout} />
         <Stack.Screen
@@ -30,12 +31,12 @@ const AuthNavigationLayout = () => {
           options={{
             headerShown: true,
             headerTitle: '',
-            headerLeft: () => <ReturnButton />,
+            headerLeft: () => <ReturnButton showIcon />,
             headerShadowVisible: false,
             gestureEnabled: true,
-            gestureDirection: 'horizontal',
+            gestureDirection: 'vertical',
             animationTypeForReplace: 'pop',
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
           }}
         />
         <Stack.Screen
@@ -44,7 +45,7 @@ const AuthNavigationLayout = () => {
           options={{
             headerShown: true,
             headerTitle: '',
-            headerLeft: () => <ReturnButton />,
+            headerLeft: () => <ReturnButton showIcon />,
             headerShadowVisible: false,
             gestureEnabled: true,
             gestureDirection: 'horizontal',
@@ -58,7 +59,7 @@ const AuthNavigationLayout = () => {
           options={{
             headerShown: true,
             headerTitle: '',
-            headerLeft: () => <ReturnButton />,
+            headerLeft: () => <ReturnButton showIcon />,
             headerShadowVisible: false,
             gestureEnabled: true,
             gestureDirection: 'horizontal',
